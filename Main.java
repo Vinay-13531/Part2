@@ -9,6 +9,9 @@ public class Main {
     public static void main(String[] args){
         //System.out.println("Hello World");
         //We will make 100 threads and each will count to 1,000,000
+
+        //Instantiate Instant variables to measure start and end time
+
         ExecutorService executorService = Executors.newFixedThreadPool(5);
 
         Callable<Integer> task1 = () -> sumUpTo(20000);
@@ -16,6 +19,8 @@ public class Main {
         Callable<Integer> task3 = () -> sumUpTo(20000);
         Callable<Integer> task4 = () -> sumUpTo(20000);
         Callable<Integer> task5 = () -> sumUpTo(20000);
+
+        //call start instant
 
         Future<Integer> future1 = executorService.submit(task1);
         Future<Integer> future2 = executorService.submit(task2);
@@ -29,6 +34,8 @@ public class Main {
             int result3 = future3.get();
             int result4 = future4.get();
             int result5 = future5.get();
+
+            //call end instant, find time difference, and print out result
 
             int totalSum = result1 + result2 + result3 + result4 + result5;
             System.out.println("Total Sum: " + totalSum);
