@@ -16,8 +16,9 @@ public class Main {
         //We will make 100 threads and each will count to 1,000,000
 
         //Instantiate Instant variables to measure start and end time
+        ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();
 
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        //ExecutorService executorService = Executors.newFixedThreadPool(5);
 
         Callable<Integer> task1 = () -> sumUpTo(20000);
         Callable<Integer> task2 = () -> sumUpTo(20000);
