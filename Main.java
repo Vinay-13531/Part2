@@ -3,10 +3,15 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.time.Duration;
+import java.time.Instant;
 
 public class Main {
 
     public static void main(String[] args){
+
+        Instant start;
+        Instant end;
         //System.out.println("Hello World");
         //We will make 100 threads and each will count to 1,000,000
 
@@ -21,6 +26,7 @@ public class Main {
         Callable<Integer> task5 = () -> sumUpTo(20000);
 
         //call start instant
+        start = Instant.now();
 
         Future<Integer> future1 = executorService.submit(task1);
         Future<Integer> future2 = executorService.submit(task2);
@@ -38,7 +44,13 @@ public class Main {
             //call end instant, find time difference, and print out result
 
             int totalSum = result1 + result2 + result3 + result4 + result5;
+            end = Instant.now();
+            Duration duration = Duration.between(start, end);
+
+
+            System.out.println("Time taken: " + duration.toMillis() + " milliseconds");
             System.out.println("Total Sum: " + totalSum);
+
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         } finally {
